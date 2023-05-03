@@ -10,6 +10,7 @@
 		</div>
 		<div class="cart-products-container">
 			{{#each products}}
+				{{!-- {{products}} --}}
 				<div class="product-card" id={{this.product._id}}>
 					<div class="product-card-header">
 						<div class="product-card-details">
@@ -80,19 +81,21 @@
 					</div>
 				</div>
 			{{else}}
-				<div class="no-products">No hay productos en el carrito</div>
+				<div class="no-products">El carrito está vacío.</div>
 			{{/each}}
 
 		</div>
-		<div class="cart-total-price-container">
-			<div class="cart-total-price-label"> Total: </div>
-			<div class="cart-total-price">
-				$
-				<div class="cart-total-price-value">
-					{{totalPrice}}
+		{{#if products}}
+			<div class="cart-total-price-container">
+				<div class="cart-total-price-label"> Total: </div>
+				<div class="cart-total-price">
+					$
+					<div class="cart-total-price-value">
+						{{totalPrice}}
+					</div>
 				</div>
 			</div>
-		</div>
+		{{/if}}
 	</div>
 </div>
 <script src="/js/cart.js"></script>

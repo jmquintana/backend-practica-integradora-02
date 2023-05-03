@@ -52,6 +52,7 @@ const deleteProductFromCart = async (productId, cartId, newQuantity) => {
 		updateProductTotal(productId);
 	} else {
 		document.getElementById(productId).remove();
+		checkIfThereAreProducts();
 	}
 	updateCartTotal();
 	try {
@@ -148,5 +149,19 @@ const handleDeleteResponse = (data) => {
 		showAlert("Product removed from cart", "success");
 	} else {
 		showAlert("Product not removed from cart", "error");
+	}
+};
+
+const checkIfThereAreProducts = () => {
+	const products = document.querySelector(".cart-products-container").children;
+	if (products.length === 0) {
+		const divNoProducts = document.createElement("div");
+		divNoProducts.classList.add("no-products");
+		divNoProducts.innerText = "El carrito está vacío";
+		document
+			.querySelector(".cart-products-container")
+			.appendChild(divNoProducts);
+		document.querySelector(".cart-total-price-container").style.display =
+			"none";
 	}
 };

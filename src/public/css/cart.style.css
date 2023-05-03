@@ -223,3 +223,10 @@
 	font-weight: 700;
 	color: #000;
 }
+
+.no-products {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}

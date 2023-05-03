@@ -1,0 +1,76 @@
+<div class="main-container">
+	<div class="transparent" id="custom-target"></div>
+	<div class="register-main-container">
+		<div class="register-form-container">
+			<div class="register-form-header">
+				<div class="register-title">Registro</div>
+			</div>
+			<div class="register-form-body">
+				<form id="register-form">
+					<div class="register-form-input">
+						<label for="first_name">Nombre</label>
+						<input
+							type="text"
+							name="first_name"
+							id="first_name"
+							placeholder="Nombre"
+						/>
+					</div>
+					<div class="register-form-input">
+						<label for="last_name">Apellido</label>
+						<input
+							type="text"
+							name="last_name"
+							id="last_name"
+							placeholder="Apellido"
+						/>
+					</div>
+					<div class="register-form-input">
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" placeholder="Email" />
+					</div>
+					<div class="register-form-input">
+						<label for="age">Edad</label>
+						<input type="text" name="age" id="age" placeholder="Edad" />
+					</div>
+					{{! role radius selector }}
+					<div class="register-form-input">
+						<label for="role">Rol</label>
+						<div class="role-selector">
+							<div class="role-selector-item">
+								<input type="radio" name="role" value="user" checked />
+								<label for="role">Usuario</label>
+							</div>
+							<div class="role-selector-item">
+								<input type="radio" name="role" value="admin" />
+								<label for="role">Admin</label>
+							</div>
+						</div>
+					</div>
+					<div class="register-form-input">
+						<label for="password">Contraseña</label>
+						<input
+							type="password"
+							name="password"
+							id="password"
+							placeholder="Contraseña"
+						/>
+					</div>
+				</form>
+				<div class="already-has-account">
+					<p>¿Ya tiene una cuenta? <a href="/login">Ingresar</a></p>
+				</div>
+			</div>
+			<div class="register-form-footer">
+				<div class="register-form-submit">
+					<button
+						class="btn add-btn"
+						type="submit"
+						form="register-form"
+					>Registrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/js/register.js"></script>

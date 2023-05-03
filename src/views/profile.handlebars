@@ -1,0 +1,46 @@
+<div class="main-container">
+	<div class="transparent" id="custom-target"></div>
+	<div class="profile-main-container">
+		<div class="profile-panel-container">
+			{{! simple profile panel with username, email and a logout button}}
+			<div class="profile-panel-header">
+				<div class="profile-title">Perfil</div>
+			</div>
+			<div class="profile-panel-body">
+				<div class="profile-panel-body-row" id="first-name">
+					<div class="profile-panel-body-label">Nombre</div>
+					<div class="profile-panel-body-value">{{user.first_name}}</div>
+				</div>
+				<div class="profile-panel-body-row" id="last-name">
+					<div class="profile-panel-body-label">Apellido</div>
+					<div class="profile-panel-body-value">{{user.last_name}}</div>
+				</div>
+				<div class="profile-panel-body-row" id="email">
+					<div class="profile-panel-body-label">Email</div>
+					<div class="profile-panel-body-value">{{user.email}}</div>
+				</div>
+				<div class="profile-panel-body-row" id="age">
+					<div class="profile-panel-body-label">Edad</div>
+					<div class="profile-panel-body-value">{{user.age}}</div>
+				</div>
+				<div class="profile-panel-body-row" id="age">
+					<div class="profile-panel-body-label">Rol</div>
+					<div class="profile-panel-body-value">{{user.role}}</div>
+				</div>
+			</div>
+			<div class="profile-panel-footer">
+				{{! back button }}
+				<a href="/" class="btn btn-dark-blue">
+					<i class="fas fa-arrow-left"></i>
+					&nbsp;Volver
+				</a>
+
+				<button class="delete-btn btn" id="logout-btn">
+					<i class="fas fa-sign-out-alt"></i>
+					&nbsp; Salir
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/js/profile.js"></script>

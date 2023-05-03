@@ -1,0 +1,98 @@
+<div class="main-container">
+	<div id="custom-target"></div>
+	<div class="cart-main-container" id="{{cartId}}">
+		<div class="cart-header-container">
+			<div class="cart-header">Carrito</div>
+			<a href="/" class="btn btn-dark-blue">
+				<i class="fas fa-arrow-left"></i>
+				&nbsp;Volver
+			</a>
+		</div>
+		<div class="cart-products-container">
+			{{#each products}}
+				<div class="product-card" id={{this.product._id}}>
+					<div class="product-card-header">
+						<div class="product-card-details">
+							<div class="product-card-title">{{this.product.title}}</div>
+							<div class="product-card-category">
+								{{this.product.category}}
+							</div>
+						</div>
+						<div class="product-card-details">
+							<div class="product-card-price">
+								$<div class="product-card-price-value">
+									{{this.product.price}}
+								</div><sup>c/u</sup>
+							</div>
+							<div class="product-card-category">Cod:
+								{{this.product.code}}</div>
+						</div>
+					</div>
+					<div class="product-card-thumbnails">
+						{{! thumbnails of the product }}
+						{{#each this.product.thumbnails}}
+							<div class="product-card-thumbnail">
+								<img src="{{this}}" alt="" />
+							</div>
+						{{else}}
+							<div class="no-image">Sin imágenes</div>
+						{{/each}}
+					</div>
+					<div class="product-card-body">
+						<div class="product-card-quantity">
+							<div class="product-card-quantity-control">
+								<div class="decrement-btn circle-btn">
+									<i class="fas fa-minus"></i>
+								</div>
+								<div class="product-card-quantity-value">
+									{{this.quantity}}
+								</div>
+								<div class="increment-btn circle-btn">
+									<i class="fas fa-plus"></i>
+								</div>
+							</div>
+							<div class="product-card-total">
+								<div class="product-card-total-label">
+									Subtotal: $
+								</div>
+								<div class="product-card-total-value">
+									{{this.subTotal}}
+								</div>
+							</div>
+							<form
+								id="delete-{{this.product._id}}"
+								class="remove-products-form"
+							>
+								<button
+									type="submit"
+									form="delete-{{this.product._id}}"
+									class="remove-products-btn btn"
+								>
+									<i class="fas fa-trash"></i>
+								</button>
+							</form>
+						</div>
+					</div>
+					<div class="product-card-footer">
+						<div class="product-card-total">
+							{{!-- Total: ${{this.product.price * this.quantity}} --}}
+						</div>
+					</div>
+				</div>
+			{{else}}
+				<div class="no-products">No hay productos en el carrito</div>
+			{{/each}}
+
+		</div>
+		<div class="cart-total-price-container">
+			<div class="cart-total-price-label"> Total: </div>
+			<div class="cart-total-price">
+				$
+				<div class="cart-total-price-value">
+					{{totalPrice}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/js/cart.js"></script>

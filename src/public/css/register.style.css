@@ -1,0 +1,180 @@
+:root {
+	--A-color: #00629b;
+	--B-color: #00843d;
+	--C-color: #64a70b;
+	--D-color: #63666a;
+	--E-color: #69b3e7;
+	--F-color: #93328e;
+	--G-color: #ea7600;
+	--H-color: #f1c400;
+	--I-color: #8e8c13;
+	--J-color: #003c71;
+	--K-color: #5d2a2c;
+	--L-color: #59315f;
+	--M-color: #16172b;
+	--N-color: #ac0006;
+}
+
+.register-main-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: normal;
+	margin: 1rem;
+}
+
+.register-form-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: space-between;
+	background-color: #fff;
+	width: 20rem;
+	margin: 1rem;
+	overflow: hidden;
+	border-radius: 1rem;
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.register-form-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 1rem;
+	background-color: var(--A-color);
+}
+
+.register-title {
+	display: flex;
+	align-items: center;
+	color: #eee;
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+.register-form-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	min-height: 10rem;
+}
+
+#register-form {
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.register-form-input {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 0.2rem;
+	height: 40px;
+}
+
+.register-form-input label {
+	color: var(--D-color);
+	font-size: 1rem;
+	font-weight: 600;
+	width: 45%;
+}
+
+.register-form-input input {
+	color: #333;
+	font-size: 1rem;
+	font-weight: 600;
+	border: none;
+	margin-left: 1rem;
+	padding: 0.5rem;
+	width: 100%;
+}
+
+.register-form-input > input:focus {
+	outline: none;
+}
+
+.register-form-input > input::placeholder {
+	color: #bbb;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.register-form-input > input:focus::placeholder {
+	color: var(--D-color);
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.register-form-input > input:invalid {
+	background-color: #ffe6e6;
+	border-bottom: 3px solid var(--N-color);
+}
+
+.register-form-input > input:invalid:focus {
+	border-bottom: 3px solid var(--N-color);
+}
+
+.register-form-input > input:valid {
+	border-bottom: 3px solid var(--C-color);
+}
+
+.register-form-input > input:valid:focus {
+	border-bottom: 3px solid var(--C-color);
+}
+
+.register-form-input > input:valid + label {
+	color: var(--C-color);
+}
+
+.role-selector {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	width: 100%;
+	margin-bottom: 0.2rem;
+	transform: translateY(0.2rem);
+}
+
+.role-selector-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	width: 45%;
+	margin-bottom: 0.2rem;
+}
+
+.role-selector-item label {
+	width: 100%;
+	display: inline-block;
+}
+
+.role-selector-item input {
+	margin: 0;
+}
+
+.register-form-submit {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.already-has-account {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--D-color);
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.register-form-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #eee;
+	overflow: hidden;
+	padding: 0.5rem;
+}

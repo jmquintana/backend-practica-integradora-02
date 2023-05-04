@@ -162,4 +162,32 @@ export default class CartManager {
 			console.log(error);
 		}
 	};
+
+	deleteAllProductFromCart = async (productId, cartId) => {
+		//get product from Model
+		const product = await productModel.findOne({
+			_id: new ObjectId(productId),
+		});
+		if (!product) throw new Error("Product not found");
+		//get cart from Model
+		const cart = await cartsModel.findOne({
+			_id: new ObjectId(cartId),
+		});
+		if (!cart) throw new Error("Cart not found");
+		//check if product is already in cart
+		const productInCart = cart.products.find(
+			(product) => product.product._id == productId
+		);
+		//if product is already in cart, update quantity and if quantity is 0 delete product from cart
+		if (productInCart.quantity) {
+			cart.products = cart.products.filter(
+				(product) => product.product._id != productId
+			);
+			//update cart
+			const updatedCart = await this.updateCart(cartId, cart.products);
+			return updatedCart;
+		} else {
+			throw new Error("Product not found in cart");
+		}
+	};
 }

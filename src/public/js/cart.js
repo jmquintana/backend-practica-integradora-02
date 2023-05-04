@@ -4,11 +4,13 @@ const cartDeleteBtn = document.querySelectorAll(".cart-delete-btn");
 const cartQuantity = document.querySelectorAll(".cart-quantity");
 const cartTotal = document.querySelector(".cart-total-price-value");
 const cartId = document.querySelector(".cart-main-container").id;
+const removeProductsBtn = document.querySelector(".remove-products-btn");
 
 // Add product to cart
 incrementBtn.forEach((btn) => {
 	btn.addEventListener("click", (e) => {
 		e.preventDefault();
+		e.stopPropagation();
 		console.log(e.target);
 		const { productId, newQuantity } = getProductValues(e, 1);
 		addProductToCart(productId, cartId, newQuantity);
@@ -19,6 +21,7 @@ incrementBtn.forEach((btn) => {
 decrementBtn.forEach((btn) => {
 	btn.addEventListener("click", (e) => {
 		e.preventDefault();
+		e.stopPropagation();
 		const { productId, newQuantity } = getProductValues(e, -1);
 		deleteProductFromCart(productId, cartId, newQuantity);
 	});
@@ -56,7 +59,7 @@ const deleteProductFromCart = async (productId, cartId, newQuantity) => {
 	}
 	updateCartTotal();
 	try {
-		await fetch(`/api/carts/${cartId}/product/${productId}`, {
+		fetch(`/api/carts/${cartId}/product/${productId}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",
@@ -72,6 +75,8 @@ const deleteProductFromCart = async (productId, cartId, newQuantity) => {
 };
 
 const getProductValues = (e, diff) => {
+	e.stopPropagation();
+	e.preventDefault();
 	const btnElement =
 		e.target.parentNode.parentNode.querySelector(".circle-btn");
 	const productElement = btnElement.parentNode.parentNode.parentNode.parentNode;
@@ -120,6 +125,33 @@ const updateCartTotal = () => {
 	cartTotal.innerText = total;
 };
 
+//remove all products of the same type from cart
+removeProductsBtn.addEventListener("click", (e) => {
+	e.stopPropagation();
+	e.preventDefault();
+	const productId =
+		e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(
+			".product-card"
+		).id;
+	console.log(productId);
+	try {
+		fetch(`/api/carts/${cartId}/allProducts/${productId}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				document.getElementById(productId).remove();
+				checkIfThereAreProducts();
+				return handleDeleteResponse(data);
+			});
+	} catch (error) {
+		console.error(error);
+	}
+});
+
 const showAlert = (message, icon) => {
 	Swal.fire({
 		html: message,
@@ -157,7 +189,7 @@ const checkIfThereAreProducts = () => {
 	if (products.length === 0) {
 		const divNoProducts = document.createElement("div");
 		divNoProducts.classList.add("no-products");
-		divNoProducts.innerText = "El carrito está vacío";
+		divNoProducts.innerText = "El carrito está vacío.";
 		document
 			.querySelector(".cart-products-container")
 			.appendChild(divNoProducts);

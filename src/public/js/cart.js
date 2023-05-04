@@ -4,7 +4,7 @@ const cartDeleteBtn = document.querySelectorAll(".cart-delete-btn");
 const cartQuantity = document.querySelectorAll(".cart-quantity");
 const cartTotal = document.querySelector(".cart-total-price-value");
 const cartId = document.querySelector(".cart-main-container").id;
-const removeProductsBtn = document.querySelector(".remove-products-btn");
+const removeProductsBtn = document.querySelectorAll(".remove-products-btn");
 
 // Add product to cart
 incrementBtn.forEach((btn) => {
@@ -126,30 +126,33 @@ const updateCartTotal = () => {
 };
 
 //remove all products of the same type from cart
-removeProductsBtn.addEventListener("click", (e) => {
-	e.stopPropagation();
-	e.preventDefault();
-	const productId =
-		e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(
-			".product-card"
-		).id;
-	console.log(productId);
-	try {
-		fetch(`/api/carts/${cartId}/allProducts/${productId}`, {
-			method: "DELETE",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				document.getElementById(productId).remove();
-				checkIfThereAreProducts();
-				return handleDeleteResponse(data);
-			});
-	} catch (error) {
-		console.error(error);
-	}
+removeProductsBtn.forEach((btn) => {
+	btn.addEventListener("click", (e) => {
+		e.stopPropagation();
+		e.preventDefault();
+		console.log(e.target.parentNode.parentNode.parentNode);
+		const cardElement = e.target.parentNode.parentNode.parentNode.querySelector(
+			".remove-products-btn"
+		).parentNode.parentNode.parentNode.parentNode;
+		const productId = cardElement.id;
+		console.log(productId);
+		try {
+			fetch(`/api/carts/${cartId}/allProducts/${productId}`, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					document.getElementById(productId).remove();
+					checkIfThereAreProducts();
+					return handleDeleteResponse(data);
+				});
+		} catch (error) {
+			console.error(error);
+		}
+	});
 });
 
 const showAlert = (message, icon) => {

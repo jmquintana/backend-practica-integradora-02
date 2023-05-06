@@ -134,11 +134,11 @@
 					>
 						<i class="fas fa-shopping-cart fa-lg"></i>
 						{{#if user.cartCount}}
-							<span class="cart-badge badge-warning" id="lblCartCount">
+							<span id="lblCartCount1" class="cart-badge badge-warning">
 								{{user.cartCount}}
 							</span>
 						{{else}}
-							<span class="cart-badge badge-warning hidden">
+							<span id="lblCartCount2" class="cart-badge badge-warning hidden">
 								0
 							</span>
 						{{/if}}

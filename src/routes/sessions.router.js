@@ -103,4 +103,11 @@ router.get(
 	}
 );
 
+router.get("/current", async (req, res) => {
+	if (req.session.user) {
+		return res.send({ status: "Success", payload: req.session.user });
+	}
+	return res.status(401).send({ status: "Error", error: "Unauthorized" });
+});
+
 export default router;
